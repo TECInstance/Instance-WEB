@@ -10,7 +10,7 @@
 namespace Instance_Web.Pages {
     
     
-    public partial class Front_Page {
+    public partial class FrontPage {
         
         /// <summary>
         /// form1 control.

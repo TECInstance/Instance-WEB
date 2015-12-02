@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Front Page.aspx.cs" Inherits="Instance_Web.Pages.Front_Page" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Front Page.aspx.cs" Inherits="Instance_Web.Pages.FrontPage" %>
 
 <!DOCTYPE html>
 
@@ -19,7 +19,7 @@
     
             Username:<asp:TextBox ID="username" runat="server"></asp:TextBox>
             <br/>
-            Password: <asp:TextBox ID="password" runat="server"></asp:TextBox>
+            Password: <asp:TextBox ID="password" runat="server" TextMode="Password"></asp:TextBox>
             <br />
             <br />
             <asp:Button runat="server" Text="Create account" ID="create_account" Height="26px" OnClick="create_account_Click"></asp:Button>
