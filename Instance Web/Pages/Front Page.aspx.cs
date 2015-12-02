@@ -16,7 +16,7 @@ namespace Instance_Web.Pages {
         }
 
         protected void create_account_Click(object sender, EventArgs e) {
-            string connectionString = @"Data Source=80.198.77.171,1337; Initial Catalog=INSTANCESQL; Network Library = dbnmpntw; User Id = InstanceLogin; Password = password";
+            string connectionString = @"Data Source=80.198.77.171,1337; Initial Catalog=Instance; User Id = InstanceLogin; Password = password";
 
             using (SqlConnection con = new SqlConnection(connectionString)) {
 
