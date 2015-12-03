@@ -38,6 +38,10 @@ namespace Instance_Web.Pages {
                     MessageBox("Connection refused");
                 }
             }
+
+            username.Text = null;
+            password.Text = null;
+            MessageBox("Account successfully created.");
         }
 
         private string HashThis(string pass) {
@@ -46,7 +50,6 @@ namespace Instance_Web.Pages {
                 var sb = new StringBuilder(hash.Length*2);
 
                 foreach (byte b in hash) {
-                    // can be "x2" if you want lowercase
                     sb.Append(b.ToString("X2"));
                 }
 
