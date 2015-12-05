@@ -17,21 +17,21 @@ namespace Instance_Web.Pages {
         }
 
         protected void create_account_Click(object sender, EventArgs e) {
-            string connectionString = @"Data Source=80.198.77.171,1337; Initial Catalog=Instance; User Id = InstanceLogin; Password = password";
+            string _connectionString = @"Data Source=80.198.77.171,1337; Initial Catalog=Instance; User Id = InstanceLogin; Password = password";
 
             if (DoesExist(username.Text)) {
                 MessageBox("Username is taken.");
             }
             else {
                 try {
-                    using (SqlConnection con = new SqlConnection(connectionString))
+                    using (SqlConnection _con = new SqlConnection(_connectionString))
                     {
-                        SqlCommand command = new SqlCommand("INSERT INTO logins(usernames,passwords) values(@username,@password)", con);
-                        command.Parameters.AddWithValue("@username", username.Text);
-                        command.Parameters.AddWithValue("@password", HashThis(password.Text));
-                        con.Open();
+                        SqlCommand _command = new SqlCommand("INSERT INTO logins(usernames,passwords) values(@username,@password)", _con);
+                        _command.Parameters.AddWithValue("@username", username.Text);
+                        _command.Parameters.AddWithValue("@password", HashThis(password.Text));
+                        _con.Open();
 
-                        command.ExecuteNonQuery();
+                        _command.ExecuteNonQuery();
                     }
                 }
                 catch (Exception) {
@@ -44,36 +44,36 @@ namespace Instance_Web.Pages {
             MessageBox("Account successfully created.");
         }
 
-        private string HashThis(string pass) {
+        private string HashThis(string _pass) {
             using (SHA1Managed sha1 = new SHA1Managed()) {
-                var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(pass));
-                var sb = new StringBuilder(hash.Length*2);
+                var _hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(_pass));
+                var _sb = new StringBuilder(_hash.Length*2);
 
-                foreach (byte b in hash) {
-                    sb.Append(b.ToString("X2"));
+                foreach (byte b in _hash) {
+                    _sb.Append(b.ToString("X2"));
                 }
 
-                return sb.ToString();
+                return _sb.ToString();
             }
         }
 
-        protected void MessageBox(string str) {
-            Page.ClientScript.RegisterStartupScript(GetType(), "scriptkey", "<script>alert('"+ str +"');</script>");
+        protected void MessageBox(string _str) {
+            Page.ClientScript.RegisterStartupScript(GetType(), "scriptkey", "<script>alert('"+ _str +"');</script>");
         }
 
-        protected bool DoesExist (string str) {
+        protected bool DoesExist (string _str) {
 
-            string connectionString = @"Data Source=80.198.77.171,1337; Initial Catalog=Instance; User Id = InstanceLogin; Password = password";
+            string _connectionString = @"Data Source=80.198.77.171,1337; Initial Catalog=Instance; User Id = InstanceLogin; Password = password";
 
-            using (SqlConnection con = new SqlConnection(connectionString)) {
-                DataTable dt = new DataTable();
-                con.Open();
+            using (SqlConnection _con = new SqlConnection(_connectionString)) {
+                DataTable _dt = new DataTable();
+                _con.Open();
 
-                var command = new SqlCommand("select * from logins", con);
-                SqlDataReader dr = command.ExecuteReader();
-                dt.Load(dr);
+                var _command = new SqlCommand("select * from logins", _con);
+                SqlDataReader _dr = _command.ExecuteReader();
+                _dt.Load(_dr);
 
-                return dt.Rows.Cast<DataRow>().Any(row => row.Field<string>("usernames") == str);
+                return _dt.Rows.Cast<DataRow>().Any(row => row.Field<string>("usernames") == _str);
             }
         }
     }
