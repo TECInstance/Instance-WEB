@@ -24,7 +24,9 @@
         <div>Username:</div><asp:TextBox class="" ID="username" runat="server"></asp:TextBox>
         <br/>
         <div style="height: 2px"></div>
-
+        <div>Title:</div> 
+        <asp:TextBox ID="title" runat="server"></asp:TextBox>
+        <br/>
         <div>Password:</div> 
         <asp:TextBox ID="password" runat="server" TextMode="Password"></asp:TextBox>
         <br/>
